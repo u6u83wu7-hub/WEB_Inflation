@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>數位生存成本：訂閱費通膨觀測</title>
+    <!-- 這裡引入你的 CSS 檔案 -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>訂閱費通膨觀測</h1>
+    <p>追蹤訂閱費用價格變遷，觀察數位娛樂通膨。</p>
+
+    <!-- 輸入表單 -->
+    <form id="record_form">
+        <label>數位服務名稱：</label>
+        <select id="service_name" required>
+            <option value="YouTube Premium 家庭方案">YouTube Premium 家庭方案</option>
+            <option value="Netflix 高級方案">Netflix 高級方案</option>
+            <option value="Spotify 家庭方案">Spotify 家庭方案</option>
+        </select>
+        
+        <label>月費價格 (TWD)：</label>
+        <input type="number" id="price" required>
+        
+        <label>紀錄年月：</label>
+        <input type="month" id="record_date" required>
+        
+        <button type="submit">新增紀錄</button>
+        <p id="log"></p>
+    </form>
+
+    <!-- 通膨折線圖區塊 -->
+    <div class="chart-container">
+        <canvas id="inflationChart"></canvas>
+    </div>
+
+    <!-- 顯示資料表格 -->
+    <table>
+        <thead>
+            <tr>
+                <th>服務名稱</th>
+                <th>價格</th>
+                <th>紀錄年月</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+            <!-- 後端資料會塞在這裡 -->
+        </tbody>
+    </table>
+
+    <!-- 這裡引入你的 JavaScript 檔案 (一定要放在 body 結尾前) -->
+    <script src="script.js"></script>
+</body>
+</html>

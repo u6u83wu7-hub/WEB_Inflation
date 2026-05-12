@@ -1,0 +1,29 @@
+{
+  "name": "web_fcu_rent_tracker",
+  "version": "1.0.0",
+  "description": "數位服務通膨觀測站 - 追蹤訂閱方案價格變化，計算並呈現個人化通膨率",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "subscription",
+    "price tracking",
+    "inflation",
+    "digital service",
+    "YouTube Premium"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.6",
+    "express": "^4.19.2",
+    "sqlite3": "^6.0.1"
+  }
+}
