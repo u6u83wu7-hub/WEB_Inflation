@@ -38,12 +38,26 @@
   ```
 - **Response**: `新增成功！` 或錯誤訊息。
 
+### 4.3 爬蟲抓取 Disney+ 價格 (加分功能)
+- **URL**: `/api/scrape/disney`
+- **Method**: `GET`
+- **Description**: 使用爬蟲技術從外部網站抓取 Disney+ 的最新訂閱價格。
+- **Response**: 返回包含商品名稱與最新價格的 JSON 物件。
+
 ## 5. 實作過程紀錄 (Implementation Steps)
 
 ### 第一步：環境初始化
 1. 建立專案資料夾。
 2. 執行 `npm init -y` 初始化 `package.json`。
-3. 安裝必要套件：`npm install express sqlite3 cors`。
+3. 安裝必要套件：`npm install express sqlite3 cors axios cheerio`。
+
+### 加分題：爬蟲功能實作
+1. **後端**：在 `server.js` 增加 `/api/scrape/disney` 路由。
+   - 使用 `axios` 前往維基百科 Disney+ 頁面。
+   - 使用 `cheerio` 解析 HTML，抓取最新的月費價格。
+2. **前端**：
+   - 增加「自動抓取 Disney+ 價格」按鈕。
+   - 點擊後呼叫爬蟲 API，將抓到的價格自動填入表單，方便使用者儲存。
 
 ### 第二步：資料庫設定 (`db.js`)
 使用 `sqlite3` 建立並連線至 `digital_inflation.db`，並在啟動時自動檢查並建立 `records` 資料表。

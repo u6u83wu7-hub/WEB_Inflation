@@ -7,7 +7,7 @@ window.onload = function() {
 
 async function fetchRecords() {
     try {
-        const res = await fetch('/api/records');
+        const res = await fetch('http://localhost:3000/api/records');
         const data = await res.json();
         
         const tbody = document.getElementById('table_body');
@@ -50,7 +50,9 @@ function updateChart(data) {
     const colors = {
         "YouTube Premium 家庭方案": "#FF0000", // YouTube 紅
         "Netflix 高級方案": "#86040b",         // Netflix 紅
-        "Spotify 家庭方案": "#1DB954"          // Spotify 綠
+        "Spotify 家庭方案": "#1DB954",         // Spotify 綠
+        "Disney+ 高級方案": '#00fbff',         // 亮青色 (亮眼好辨識)
+        "Disney+ 標準方案": '#3742fa'          // 深藍色 (與高級版區隔)
     };
 
     sortedData.forEach(row => {
@@ -127,5 +129,35 @@ document.getElementById('record_form').addEventListener('submit', async (e) => {
         fetchRecords(); 
     } catch (error) {
         document.getElementById('log').innerText = '新增失敗，請檢查伺服器';
+    }
+});
+
+// 3. 監聽爬蟲按鈕 (一鍵寫入歷史紀錄)
+document.getElementById('btn_scrape').addEventListener('click', async () => {
+    const log = document.getElementById('log');
+    log.innerText = '🤖 爬蟲出動中，正在取得歷年價格並寫入資料庫...';
+    
+    try {
+        // 1. 呼叫爬蟲 API 拿回陣列資料
+        const res = await fetch('/api/scrape/disney');
+        const result = await res.json();
+        
+        if (result.success) {
+            // 2. 使用 for 迴圈，把每一筆歷史價格都 POST 到資料庫
+            for (let item of result.data) {
+                await fetch('/api/records', { // ⚠️ 記得這裡要是 /api/records，不要加 localhost
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(item)
+                });
+            }
+            
+            log.innerText = `✅ 爬蟲成功！已自動將 Disney+ 的歷史價格匯入觀測站！`;
+            
+            // 3. 重新整理下方的表格，讓新資料馬上顯示出來
+            fetchRecords(); 
+        }
+    } catch (error) {
+        log.innerText = '❌ 爬蟲失敗，請檢查伺服器連線。';
     }
 });
