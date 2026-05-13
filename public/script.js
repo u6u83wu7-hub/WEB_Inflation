@@ -51,8 +51,8 @@ function updateChart(data) {
         "YouTube Premium 家庭方案": "#FF0000", // YouTube 紅
         "Netflix 高級方案": "#86040b",         // Netflix 紅
         "Spotify 家庭方案": "#1DB954",         // Spotify 綠
-        "Disney+ 高級方案": '#00fbff',         // 亮青色 (亮眼好辨識)
-        "Disney+ 標準方案": '#3742fa'          // 深藍色 (與高級版區隔)
+        "Disney+ 高級方案(爬蟲)": '#00fbff',         // 亮青色 (亮眼好辨識)
+        "Disney+ 標準方案(爬蟲)": '#3742fa'          // 深藍色 (與高級版區隔)
     };
 
     sortedData.forEach(row => {

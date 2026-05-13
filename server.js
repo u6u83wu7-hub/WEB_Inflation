@@ -90,7 +90,7 @@ app.get('/api/scrape/disney', async (req, res) => {
                 if (!seenKeys.has(uniqueKey) && price > 100) { // 過濾掉太小的數字
                     seenKeys.add(uniqueKey);
                     foundRecords.push({ 
-                        service_name: price >= 320 ? "Disney+ 高級方案" : "Disney+ 標準方案", 
+                        service_name: price >= 320 ? "Disney+ 高級方案(爬蟲)" : "Disney+ 標準方案(爬蟲)", 
                         price: price, 
                         record_date: `${year}-${month}` 
                     });
